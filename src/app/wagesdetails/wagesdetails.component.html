@@ -1,0 +1,31 @@
+<div>
+    <ul>
+        <!-- <a class="btn btn-primary" routerLink="/admin/manageproducts/newproduct">AddNew Product</a>
+        &nbsp; -->
+        <a type="button" class="btn btn-primary" (click)="exportintoexcel()">Download Excel</a>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <div class="spinner-border" *ngIf="loading" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </ul>
+</div>
+<div>
+    <table class="table">
+        <thead class="thead-dark" style="text-align: center;">
+            <tr>
+                <th scope="col">Spend By</th>
+                <th scope="col">Spended Date</th>
+                <th scope="col">Amount Spend</th>
+                <th scope="col">Spend For</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let list of wagesdetails" style="text-align: center">
+                <td>{{ list.spend_by }}</td>
+                <td>{{ list.spended_date | date:'short' }}</td>
+                <td>{{ list.amount_spend }}</td>
+                <td>{{ list.spend_for }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,41 @@
+<form  #spendform="ngForm" (ngSubmit)="submitspend(spendform.value)">
+  <div class="form-group row">
+    <label for="inputspendby" class="col-sm-2 col-form-label">SpendBy</label>
+    <div class="col-sm-10">
+      <input #inputspendby="ngModel" [(ngModel)]="spendbyuser" type="text" class="form-control" name="inputspendby" id="inputspendby" disabled=true>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputdate" class="col-sm-2 col-form-label">SpendDate</label>
+    <div class="col-sm-10">
+      <input  type="text" name="inputdate" id="inputdate" class="form-control"  #inputdate="bsDatepicker" [min]="mindate" [max]="maxdate" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" [ngModel]="myDateValue" bsDatepicker [(bsValue)]="myDateValue">
+    </div>
+  </div>
+  <div  class="form-group row">
+    <label for="inputamount" class="col-sm-2 col-form-label">Amount Spend</label>
+    <div class="col-sm-10">
+      <input #inputamount="ngModel" ngModel type="number" [value]="resetForm" class="form-control" name="inputamount" id="Inputamount" [min]="0" max="20000" required>
+    </div>
+    <div class="alert alert-danger" *ngIf="inputamount.touched && inputamount.invalid">
+      <div *ngIf="inputamount.errors.required">Price is mandatory field.</div>
+      <div *ngIf="inputamount.errors.min">Price value should be 0 or greater.</div>
+    </div>
+  </div>
+  <div class="form-group row">
+      <label for="inputspendfor" class="col-sm-2 col-form-label">Spend For</label>
+      <div class="col-sm-10">
+        <input #inputspendfor="ngModel" [value]="resetForm" ngModel type="text" class="form-control" name="inputspendfor" id="inputspendfor"  maxlength="20" required>
+      </div>
+      <!-- <div class="alert alert-danger" *ngIf="inputspendfor.touched && inputspendfor.invalid">
+        <div *ngIf="inputspendfor.errors.required">Spend for is mandatory field.</div>
+      </div> -->
+    </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary" >Submit</button>
+    </div>
+    <div>
+      <p *ngIf="formNullError"> Please Enter Corrent Value</p>
+    </div>
+  </div>
+</form>

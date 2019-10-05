@@ -1,0 +1,45 @@
+<div>
+<form #f="ngForm" (ngSubmit)="searchbus(f.value)">
+    <div class="form-group">
+      <label for="formGroupExampleInput">From Place</label>
+      <input #fromplace="ngModel" ngModel type="text" class="form-control" list="routes" name="fromplace" id="fromplace" placeholder="Example input - Dharapuram" required>
+      <datalist id="routes">
+        <option *ngFor="let routecode of busroutes" >{{routecode.code}}</option>
+      </datalist> 
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Destination</label>
+      <input #designation="ngModel" ngModel type="text" class="form-control" list="routes" name="designation" id="designation" placeholder="Another input - Karur" required>
+      <datalist id="routes">
+        <option *ngFor="let routecode of busroutes" >{{routecode.code}}</option>
+      </datalist> 
+    </div>
+    <button type="submit"  class="btn btn-primary">Search</button>
+    <p *ngIf="formNullinput_error" style="color:red">Please enter From & To Place.</p>
+    <p *ngIf="routeNotavailable_error" style="color:red">No bus available in our database for from & designation you entered.</p>
+  </form>
+  <br>
+  <div style="width: 80px;">
+    <table class="table">
+      <thead class="thead-dark" style="text-align: center;">
+        <tr>
+          <th scope="col">Bus_Name</th>
+          <!-- <th scope="col">Bus_Start_point</th> -->
+          <th scope="col">Your_Start_point</th>
+          <th scope="col">Your_Designation</th>
+          <!-- <th scope="col">Bus_End_point</th> -->
+        </tr>
+      </thead>        
+      <tbody>
+        <tr *ngFor="let list of busdetails_tabledata" style="text-align: center">
+          <td>{{list.bus_name}}</td>
+          <!-- <td>{{list.bus_start_point}}</td> -->
+          <td>{{list.your_start_point}}</td>
+          <td>{{list.your_designation}}</td>
+          <!-- <td>{{list.bus_end_point}}</td> -->
+          
+        </tr>
+      </tbody>
+    </table> 
+    </div>
+  </div>

@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-3">
+
+    </div>
+    <div class="col 6">
+        <div class="card msgcard">
+            <span class="msgbox">
+                <div *ngFor="let msg of messagesfromDB">
+                    <p [class.msgright]="msg.from === loginUser">
+                        {{msg.message}}</p>
+                </div>
+                <input #message name="message" class="form-control" type="text" placeholder="Type a msg ..." [(ngModel)]="msgvalue">
+                <br>
+                <div style="text-align: center;">
+                    <a class="btn btn-primary" type="button" (click)="msgstore(message.value)">Send</a>
+                    &nbsp;
+                    <a class="btn btn-primary" type="button" (click)="msgdelete()">Delete msgs</a>
+                </div>
+            </span>
+        </div>
+
+    </div>
+    <div class="col-3">
+
+    </div>
+</div>

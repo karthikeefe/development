@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg  navbar-light bg-primary sticky-top">
+  <span class="navbar-brand mb-0 h1" style="color:aliceblue" routerLink="/">AngularShop</span>
+  <button class="navbar-toggler" type="button" (click)="colapse()" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div [ngClass]="{'collapse':isColapse ,'navbar-collapse':true}" class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li routerLinkActive="active current">
+        <a class="nav-link" style="color: aliceblue" (click)="colapse()" routerLink="">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li routerLinkActive="active current">
+        <a class="nav-link" style="color: aliceblue" (click)="colapse()" routerLink="/products">Products</a>
+      </li>
+      <li *ngIf="adminuser" class="active current">
+        <a class="nav-link" style="color: aliceblue" (click)="colapse()" routerLink="admin/manageorders">Admin User</a>
+      </li>
+      <li *ngIf="adminuser" class="active current">
+        <a class="nav-link" style="color: aliceblue" (click)="colapse()" routerLink="/t11wages">T11 wages</a>
+      </li>
+      <li *ngIf="adminuser" class="active current">
+        <a class="nav-link" style="color: aliceblue" (click)="colapse()" routerLink="/wagesdetail">Wages-Details</a>
+      </li>
+      <li *ngIf="adminuser" class="active current">
+        <a class="nav-link" style="color: aliceblue" (click)="colapse()" routerLink="/busroute">Bus-Route</a>
+      </li>
+    </ul>
+    <!-- <div class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-primary" style="color: aliceblue" routerLink="/shoppingcart">Cart</button> &nbsp;  
+        </div> -->
+    <ul class="navbar-nav mr-end">
+      <li *ngIf="!loginUsername " class="nav-item">
+        <a class="nav-link" style="color: aliceblue" (click)="colapse()" routerLink="/login">login</a>
+      </li>
+      <li ngbDropdown *ngIf="loginUsername " class="nav-item dropdown">
+        <a ngbDropdownToggle class="btn btn-outline-primary" style="color: aliceblue">{{loginUsername }}</a>
+        <div ngbDropdownMenu class="dropdown menu">
+          <a class="nav-link" (click)="colapse()" routerLink="/myorders">My orders</a>
+          <a class="nav-link" *ngIf="adminuser" (click)="colapse()" routerLink="admin/manageorders">Manage orders</a>
+          <a class="nav-link" *ngIf="adminuser" (click)="colapse()" routerLink="admin/manageproducts">Manage Product's</a>
+          <a class="nav-link" (click)="logout()" (click)="colapse()" routerLink="/">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

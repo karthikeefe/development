@@ -1,0 +1,17 @@
+.msgbox{
+    position: absolute;
+    bottom: 0px;  
+    width: 100%
+}
+
+.msgcard{
+    width: 100%; 
+    height: 30rem;
+    background-color: lightcyan;
+}
+
+.msgright{
+    text-align: right;
+    background-color: dodgerblue;
+    color: white;
+}

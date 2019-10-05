@@ -1,0 +1,58 @@
+<p class="text-center" style="font-size: 40px;font-weight: bold;">ADD NEW PRODUCTS</p>
+<div class="row">
+    <div class="col 6">
+        <form #f="ngForm" (ngSubmit)="saveproduct(f.value)">
+                <p *ngIf="saveError" style="color:red">Please enter the correct product values.</p> 
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input #title="ngModel" [(ngModel)]="editproduct.title" name="title" type="text" id ="Title" class="form-control" maxlength="20" minlength="3" required>
+                <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+                    <div *ngIf="title.errors.required">Title is mandatory field.</div>
+                    <div *ngIf="title.errors.minlength">Title should more than 3 character's</div>
+                    <div *ngIf="title.errors.maxlength">Title should less than 15 character's</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Price">Price</label>
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Rs</span>
+                    <input #price="ngModel" [(ngModel)]="editproduct.price" name="price" type="number" id ="Price" class="form-control" [min]="0" max="10000" required>
+                </div>
+                <div class="alert alert-danger"  *ngIf="price.touched && price.invalid">
+                    <div *ngIf="price.errors.required">Price is mandatory field.</div>
+                    <div *ngIf="price.errors.min">Price value should  be 0 or greater.</div>
+                </div>
+             </div>
+             <div class="form-group">
+                <label for="Category">Category</label>
+                <select #categorys="ngModel" [(ngModel)]="editproduct.categorys" name="categorys" type="text" id ="Category" class="form-control" required>
+                    <option *ngFor="let cat of category" [value]="cat.name">{{cat.name}}</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="categorys.touched && categorys.invalid">Category is mandatory field.</div>
+                
+             </div>   
+            <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input #imageUrl="ngModel" [(ngModel)]="editproduct.imageUrl" name="imageUrl" type="text" id ="imageUrl" class="form-control" minlength="5" required url>
+                <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+                    <div *ngIf="imageUrl.errors.required">Image URL is mandatory field.</div>
+                    <div *ngIf="imageUrl.errors.url">Please enter valid URL</div>
+                </div>
+            </div>    
+            <button class="btn btn-primary" [disabled]="saveSuccess">Save</button>  
+            <p *ngIf="saveError" style="color:red">Please enter the correct product values.</p> 
+            <p *ngIf="saveSuccess" style="color:green">New product is added successfully. Please wait ....</p>  
+        </form>
+    </div>
+    <div class="col 6">
+        <div class="card" style="width: 18rem;">
+            <img [src]="editproduct.imageUrl" class="card-img-top" *ngIf="editproduct.imageUrl">
+            <div class="card-body">
+              <h5 class="card-title">{{ title.value }}</h5>
+              <p class="card-text">Price Rs : {{price.value }}</p>
+              <p class="card-text">Category : {{ categorys.value }}</p>
+            </div>
+          </div>
+    </div>
+</div>
+

@@ -1,0 +1,32 @@
+.modalcss{
+    position: absolute;
+    height: 220px;
+    width: 900px;
+    left: 50%;
+    top: 15%;
+    margin-top:  -60px;
+    margin-left: -450px;
+    position: fixed;
+}
+
+.backscreenblur{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0,0, 0.4);
+    position: fixed;
+    margin: 0;
+    top: 0px;
+    left: 0px;
+}
+
+.cardimg{
+height: 150px;
+width: 200px;
+
+}
+
+.sticky-top{
+    top: 70px;
+}
+
+

@@ -1,0 +1,72 @@
+<br>
+<div>
+ <div> 
+<ul>
+    <a class="btn btn-primary"  routerLink="/admin/manageproducts/newproduct" >AddNew Product</a>
+    &nbsp;
+    <!-- <a type="button" class="btn btn-primary" (click)="exportintoexcel()">Download Excel</a> -->
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <div class="spinner-border" *ngIf="loading" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+  </ul>
+<p>
+  <input *ngIf="!loading" class="form-control" type="text" #search (keyup)="searchproduct(search.value)" placeholder="Search ..." maxlength="20">
+</p>
+</div>
+<table class="table">
+        <thead class="thead-dark" style="text-align: center;">
+          <tr>
+            <th scope="col">Product name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>        
+        <tbody>
+          <tr *ngFor="let list of searchproductListkey" style="text-align: center">
+            <td>{{list.title}}</td>
+            <td>{{list.categorys}}</td>
+            <td>{{list.price}}</td>
+            <td>
+                <a type="button" class="btn btn-primary" [routerLink]="['newproduct',list.key]"> Edit </a>
+                &nbsp; &nbsp;
+                <a type="button" class="btn btn-primary" style="color: aliceblue;"  (click)="modalClick(list)">View</a>
+                &nbsp; &nbsp;
+                <a type="button" class="btn btn-primary" style="color: aliceblue;">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>    
+</div>
+<div *ngIf="modal">
+  <div  class="backscreenblur"></div>
+      <!-- Modal -->
+<div class="modalcss" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 18rem;" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+        <button type="button" class="close" (click)="modalClick()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+        <div class="card">
+                  <img [src]="cardviewImageUrl" style="width: 15rem; height: 16rem;"class="card-img-top">
+                  <span >
+                      <h5 class="card-title">Product Name : {{cardviewTitle}}</h5>
+                      <p class="card-text">Price Rs : {{cardviewPrice}}</p>
+                      <p class="card-text">Category : {{cardviewCategory}}</p>
+                  </span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalClick()" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+      
